@@ -46,14 +46,13 @@ The central design decision was how to serve two audiences with opposite needs f
 - Combined two metrics: an LLM-as-a-Judge score for semantic correctness and completeness, and RAGAS context precision for retrieval quality
 - Chose LLM-as-a-Judge over plain cosine similarity, which does not capture deep semantic correctness, and paired it with precision so retrieval failures could be separated from generation failures
 - Scored the engineering and marketing personas separately and ran the best configuration across all 75 gold questions
+- RAGAS context precision proved token-heavy at scale, since it issues an LLM call per retrieved chunk, so it was used for focused comparisons rather than the full 75-question batch, which relied on the LLM-as-a-Judge score. The trade-off is real: precision gives a sharper read on retrieval quality but costs too much to run on every evaluation.
 
 ## 🏆 Results
 
 - The strongest configuration paired `multi-qa-mpnet-base-dot-v1` embeddings, 448 to 512 token chunks, Cohere reranking, and tuned top-k retrieval with the dual-persona prompts.
 - Cohere was selected as the final generation model over Mistral, trading the open-source model's lower cost for noticeably better grounding, tone control, and synthesis across multiple documents.
 - The two-metric framework proved its worth during tuning: tracking retrieval precision separately from answer quality made it clear when a weak answer came from poor retrieval versus poor generation, which is what drove the chunking and reranking decisions.
-
-_Exact per-question scores live in the POC report; this summary reflects the winning configuration and the model decision._
 
 ## 🧠 Skills Demonstrated
 
