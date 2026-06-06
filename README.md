@@ -63,4 +63,4 @@ The central design decision was how to serve two audiences with opposite needs f
 
 ## 🧰 Stack
 
-Includes but is not limited to LangChain, Mistral 7B Instruct, Cohere (generation and reranking), Sentence Transformers, Qdrant, and RAGAS.
+LangChain, Mistral 7B Instruct, Cohere (generation and reranking), Sentence Transformers, Qdrant, and RAGAS.
