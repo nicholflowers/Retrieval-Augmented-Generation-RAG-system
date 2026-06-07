@@ -1,6 +1,6 @@
 # 🔎 RAG System Design & Evaluation
 
-**A proof-of-concept retrieval-augmented generation system that answers Generative AI questions for both engineering and marketing teams, grounding each response in a fixed internal document corpus.**
+**A proof-of-concept Retrieval Augmented Generation system that answers Generative AI questions for both engineering and marketing teams, grounding each response in a fixed internal document corpus.**
 
 ## 📌 Overview
 
