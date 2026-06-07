@@ -9,7 +9,7 @@ A tech company wanted a better way for its engineering and marketing teams to se
 ## 🎯 Project Goals
 
 - Implement a RAG pipeline in LangChain over a fixed document collection
-- Decide how to serve two audiences with opposite needs from one system: engineers, who need detailed answers, and marketing staff, who need high-level ones
+- Decide how to serve two audiences with opposite needs from one system. (Engineers, who need detailed answers, and marketing staff, who need high-level ones.)
 - Define an evaluation metric that measures how closely the system's answers match a set of labeled "gold" answers
 - Experiment with hyperparameters (embeddings, chunk size, prompts, language model) to find the strongest configuration
 - Deliver a proof-of-concept recommendation, including risks and limitations
