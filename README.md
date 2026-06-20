@@ -4,7 +4,7 @@
 
 ## 📌 Overview
 
-A tech company wanted a better way for its engineering and marketing teams to search internal documents and get answers, particularly about Generative AI and LLM concepts. This project is a proof of concept evaluating whether a RAG system could meet that need, and whether it answers well enough to justify a full build.
+A tech company wants a better way for its engineering and marketing teams to search internal documents and get answers, particularly about Generative AI and LLM concepts. This project is a proof of concept evaluating whether a RAG system could meet that need, and whether it answers well enough to justify a full build.
 
 ## 🎯 Project Goals
 
