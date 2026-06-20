@@ -43,10 +43,15 @@ The central design decision was how to serve two audiences with opposite needs f
 
 ### 🔹 Evaluation
 
-- Combined two metrics: an LLM-as-a-Judge score for semantic correctness and completeness, and RAGAS context precision for retrieval quality
-- Chose LLM-as-a-Judge over plain cosine similarity, which does not capture deep semantic correctness, and paired it with precision so retrieval failures could be separated from generation failures
-- Scored the engineering and marketing personas separately and ran the best configuration across all 75 gold questions
-- RAGAS context precision proved token-heavy at scale, since it issues an LLM call per retrieved chunk, so it was used for focused comparisons rather than the full 75-question batch, which relied on the LLM-as-a-Judge score. The trade-off is real: precision gives a sharper read on retrieval quality but costs too much to run on every evaluation.
+Evaluation was designed to measure both answer quality and retrieval quality independently, allowing generation failures to be distinguished from retrieval failures.
+
+For answer quality, I used an LLM-as-a-Judge framework that compared generated responses against a set of labeled gold answers and scored them based on semantic correctness, completeness, and relevance. This approach was selected over embedding-based similarity metrics, which often reward lexical overlap while missing substantive differences in meaning.
+
+For retrieval quality, I used RAGAS Context Precision, which evaluates whether the retrieved document chunks are actually relevant to the question being asked. Tracking retrieval precision separately proved valuable during experimentation because it exposed cases where weak answers stemmed from poor retrieval rather than poor generation.
+
+Engineering and marketing personas were evaluated independently, and candidate configurations were compared across embedding models, chunking strategies, retrieval settings, prompts, reranking approaches, and generation models.
+
+A practical challenge emerged during large-scale evaluation. RAGAS Context Precision requires an LLM evaluation call for each retrieved chunk, making its computational and token costs grow rapidly with both dataset size and retrieval depth. While the metric was highly informative during targeted experiments, it became prohibitively expensive to run across the full 75-question benchmark. As a result, Context Precision was used selectively during tuning and ablation studies, while final large-scale comparisons relied primarily on the LLM-as-a-Judge metric. This tradeoff balanced evaluation rigor against operational cost and reflects a common challenge in production-scale RAG evaluation.
 
 ## 🏆 Results
 
