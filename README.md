@@ -49,7 +49,7 @@ For answer quality, I used an LLM-as-a-Judge framework that compared generated r
 
 For retrieval quality, I used RAGAS Context Precision, which evaluates whether the retrieved document chunks are actually relevant to the question being asked. Tracking retrieval precision separately proved valuable during experimentation because it exposed cases where weak answers stemmed from poor retrieval rather than poor generation.
 
-Engineering and marketing personas were evaluated independently, and candidate configurations were compared across embedding models, chunking strategies, retrieval settings, prompts, reranking approaches, and generation models.
+Engineering and marketing personas were evaluated independently, and candidate configurations were compared across embedding models, chunking strategies, retrieval settings, prompts, reranking approaches and generation models.
 
 A practical challenge emerged during large-scale evaluation. RAGAS Context Precision requires an LLM evaluation call for each retrieved chunk, making its computational and token costs grow rapidly with both dataset size and retrieval depth. While the metric was highly informative during targeted experiments, it became prohibitively expensive to run across the full 75-question benchmark. As a result, Context Precision was used selectively during tuning and ablation studies, while final large-scale comparisons relied primarily on the LLM-as-a-Judge metric. This tradeoff balanced evaluation rigor against operational cost and reflects a common challenge in production-scale RAG evaluation.
 
