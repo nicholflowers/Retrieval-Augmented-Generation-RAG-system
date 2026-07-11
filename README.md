@@ -59,6 +59,9 @@ A practical challenge emerged during large-scale evaluation. RAGAS Context Preci
 - Cohere was selected as the final generation model over Mistral, trading the open-source model's lower cost for noticeably better grounding, tone control, and synthesis across multiple documents.
 - The two-metric framework proved its worth during tuning: tracking retrieval precision separately from answer quality made it clear when a weak answer came from poor retrieval versus poor generation, which is what drove the chunking and reranking decisions.
 
+📄 Deliverable
+The RAG Proof of Concept Report is written for the client and presents the findings, risks and limitations, with a recommendation on whether to proceed with a full build.
+
 ## 🧠 Skills Demonstrated
 
 - **RAG pipeline construction:** assembling embeddings, chunking, a vector store, a retriever, and an LLM into a working LangChain chain
