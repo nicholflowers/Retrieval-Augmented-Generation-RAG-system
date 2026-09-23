@@ -11,7 +11,7 @@ A tech company wants a better way for its engineering and marketing teams to sea
 - Implement a RAG pipeline in LangChain over a fixed document collection
 - Decide how to serve two audiences with opposite needs from one system. (Engineers, who need detailed answers, and marketing staff, who need high-level ones.)
 - Define an evaluation metric that measures how closely the system's answers match a set of labeled "gold" answers
-- Experiment with hyperparameters (embeddings, chunk size, prompts, language model) to find the strongest configuration
+- Experiment with context design, model selection and retrieval settings to find the strongest configuration.
 - Deliver a proof-of-concept recommendation, including risks and limitations
 
 ## 🗂️ Dataset
@@ -39,7 +39,7 @@ The pipeline was built within a fixed toolset to mirror a realistic proof of con
 
 ### 🔹 Handling Two Personas
 
-The central design decision was how to serve two audiences with opposite needs from one system: engineers wanting detailed, technical answers and marketing wanting simplified, high-level ones. Rather than build and maintain two separate pipelines, I kept a single shared retrieval layer and differentiated the personas entirely through prompt design, which kept the system simple while still meeting both teams' needs. Where retrieval trade-offs arose, such as chunk size and top-k, I prioritized technical accuracy for the engineering persona and shaped clarity for marketing through the prompt rather than the retrieval. Both prompts were constrained to answer only from the retrieved context and to say "Not enough information" when the context did not support an answer.
+The central design decision was how to serve two audiences with opposite needs from one system: engineers needing detailed, technical answers and marketing staff needing simplified, high-level ones. Rather than build and maintain two separate pipelines, I used a shared retrieval layer and adapted the context for each persona through retrieval settings and prompt instructions.  This kept the system simple while still meeting the needs of both teams.  To manage retrieval trade-offs such as chunk size and top-k, I prioritized technical accuracy for the engineering persona and shaped clarity for marketing through the prompt rather than the retrieval. Both prompts were constrained to answer only from the retrieved context and to say "Not enough information" when the context did not support an answer.
 
 ### 🔹 Evaluation
 
@@ -64,11 +64,12 @@ A practical challenge emerged during large-scale evaluation. RAGAS Context Preci
 The RAG Proof of Concept Report is written for the client and presents the findings, risks and limitations, with a recommendation on whether to proceed with a full build.
 
 ## 🧠 Skills Demonstrated
+- **RAG pipeline construction**: assembling embeddings, chunking, vector retrieval, reranking, and an LLM into a working LangChain pipeline
+- **Context engineering**: controlling what reached the model through retrieval depth, reranking, deduplication, grounding constraints, and persona-specific prompts
+- **Evaluation design**: combining LLM-as-a-Judge with RAGAS Context Precision to evaluate answer quality and retrieval quality independently
+- **Experimental design**: testing how embeddings, chunk size, retrieval settings, prompts, reranking, and model choice affected system performance
+- **Stakeholder communication**: translating experimental findings into a proof-of-concept recommendation covering performance, risks, and limitations.
 
-- **RAG pipeline construction:** assembling embeddings, chunking, a vector store, a retriever, and an LLM into a working LangChain chain
-- **Evaluation design:** combining an LLM-as-a-Judge score with RAGAS retrieval precision to measure answer quality and retrieval quality independently
-- **Hyperparameter experimentation:** reasoning about how embeddings, chunk size, prompts, and model choice affect retrieval and answer quality
-- **Stakeholder communication:** framing a build decision through a proof-of-concept report covering performance, risks, and limitations
 
 ## 🧰 Stack
 
