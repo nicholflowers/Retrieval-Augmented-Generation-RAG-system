@@ -39,13 +39,13 @@ The pipeline was built within a fixed toolset to mirror a realistic proof of con
 
 ### 🔹 Handling Two Personas
 
-The central design decision was how to serve two audiences with opposite needs from one system: engineers needing detailed, technical answers and marketing staff needing simplified, high-level ones. Rather than build and maintain two separate pipelines, I used a shared retrieval layer and adapted the context for each persona through retrieval settings and prompt instructions.  This kept the system simple while still meeting the needs of both teams.  To manage retrieval trade-offs such as chunk size and top-k, I prioritized technical accuracy for the engineering persona and shaped clarity for marketing through the prompt rather than the retrieval. Both prompts were constrained to answer only from the retrieved context and to say "Not enough information" when the context did not support an answer.
+The central design decision was how to serve two audiences with opposite needs from one system: engineers needing detailed, technical answers  and marketing staff needing simplified, high-level ones. Rather than build and maintain two separate pipelines, I used a shared retrieval       layer and adapted the context for each persona through retrieval settings and prompt instructions.  This kept the system simple while still     meeting the needs of both teams.  To manage retrieval trade-offs such as chunk size and top-k, I prioritized technical accuracy for the         engineering persona and shaped clarity for marketing through the prompt rather than the retrieval. Both prompts were constrained to answer      only from the retrieved context and to say "Not enough information" when the context did not support an answer.
 
 ### 🔹 Evaluation
 
-Evaluation was designed to measure both answer quality and retrieval quality independently, allowing generation failures to be distinguished from retrieval failures.
+Evaluation was designed to measure both answer quality and retrieval quality independently, allowing generation failures to be distinguished    from retrieval failures.
 
-For answer quality, I used an LLM-as-a-Judge framework that compared generated responses against a set of labeled gold answers and scored them based on semantic correctness, completeness, and relevance. This approach was selected over embedding-based similarity metrics, which often reward lexical overlap while missing substantive differences in meaning.
+For answer quality, I used an LLM-as-a-Judge framework that compared generated responses against a set of labeled gold answers and scored       them based on semantic correctness, completeness, and relevance. This approach was selected over embedding-based similarity metrics, which      often reward lexical overlap while missing substantive differences in meaning.
 
 For retrieval quality, I used RAGAS Context Precision, which evaluates whether the retrieved document chunks are actually relevant to the question being asked. Tracking retrieval precision separately proved valuable during experimentation because it exposed cases where weak answers stemmed from poor retrieval rather than poor generation.
 
